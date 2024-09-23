@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:bloc/bloc.dart';
 
 void main() {
   runApp(const MyApp());
@@ -9,48 +10,67 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home: HomePage());
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: HomePage(),
+    );
+  }
+}
+
+class CounterCubit extends Cubit<int> {
+  CounterCubit({this.inisialData = 0}) : super(inisialData);
+  int inisialData;
+
+  void kurangData() {
+    emit(state - 1);
+  }
+
+  void tambahData() {
+    emit(state + 1);
   }
 }
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-  Stream<int> countStream() async* {
-    for (int i = 1; i <= 10; i++) {
-      await Future.delayed(const Duration(seconds: 1));
-      yield i;
-    }
-  }
+  CounterCubit myCounter = CounterCubit(inisialData: 99);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('1'),
+        title: const Text("CUBIT APPS"),
       ),
-      body: StreamBuilder(
-        stream: countStream(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: Text(
-                'Loading....',
-                style: TextStyle(
-                  fontSize: 50,
-                ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          StreamBuilder(
+              initialData: myCounter.inisialData,
+              stream: myCounter.stream,
+              builder: (context, snapshot) {
+                return Center(
+                  child: Text(
+                    '${snapshot.data}',
+                    style: const TextStyle(fontSize: 50),
+                  ),
+                );
+              }),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              IconButton(
+                onPressed: () {
+                  myCounter.kurangData();
+                },
+                icon: const Icon(Icons.remove),
               ),
-            );
-          } else {
-            return Center(
-              child: Text(
-                '${snapshot.data}',
-                style: const TextStyle(
-                  fontSize: 50,
-                ),
+              IconButton(
+                onPressed: () {
+                  myCounter.tambahData();
+                },
+                icon: const Icon(Icons.add),
               ),
-            );
-          }
-        },
+            ],
+          )
+        ],
       ),
     );
   }

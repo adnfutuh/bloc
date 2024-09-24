@@ -1,12 +1,14 @@
 import 'package:bloc_app/bloc/counter.dart';
 import 'package:bloc_app/pages/data_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomePage extends StatelessWidget {
-  Counter myCounter = Counter();
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    Counter myCounter = BlocProvider.of<Counter>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text("Bloc Provider"),
@@ -37,7 +39,7 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
               ),
-              dataWidget(myCounter2: myCounter),
+              const DataWidget(),
               Material(
                 color: Colors.blue,
                 borderRadius: BorderRadius.circular(25),

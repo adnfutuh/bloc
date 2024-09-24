@@ -1,14 +1,10 @@
-import 'package:bloc_app/bloc/counter.dart';
 import 'package:bloc_app/pages/center_Widget.dart';
 import 'package:flutter/material.dart';
 
-class dataWidget extends StatelessWidget {
-  const dataWidget({
+class DataWidget extends StatelessWidget {
+  const DataWidget({
     super.key,
-    required this.myCounter2,
   });
-
-  final Counter myCounter2;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +12,7 @@ class dataWidget extends StatelessWidget {
       height: 100,
       width: 200,
       color: Colors.red,
-      child: centerwidget(myCounter3: myCounter2),
+      child: const Centerwidget(),
     );
   }
 }

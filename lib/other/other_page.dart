@@ -7,7 +7,7 @@ class OtherPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Counter myCounter = context.read();
+    Counter myCounter = context.read<Counter>();
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {

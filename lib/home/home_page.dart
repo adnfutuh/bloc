@@ -16,16 +16,12 @@ class HomePage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) => BlocProvider.value(
-                value: myCounter,
-                child: const OtherPage(),
-              ),
-              //  BlocProvider(
-              //   create: (context) => myCounter,
-              //   child: const OtherPage(),
-              // ),
-            ),
+            MaterialPageRoute(builder: (context) => const OtherPage()
+                //  BlocProvider(
+                //   create: (context) => myCounter,
+                //   child: const OtherPage(),
+                // ),
+                ),
           );
         },
         child: const Icon(Icons.arrow_forward),

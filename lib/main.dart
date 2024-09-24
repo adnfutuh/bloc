@@ -20,3 +20,4 @@ class MyApp extends StatelessWidget {
         ));
   }
 }
+//akan error jika membuat page baru makanya harus membuat block provider baru atau menaikkan bloc provider

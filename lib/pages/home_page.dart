@@ -31,15 +31,26 @@ class HomePage extends StatelessWidget {
               }
             },
             builder: (context, state) {
-              return Center(
-                child: Text(
-                  '$state',
-                  style: const TextStyle(fontSize: 50),
-                ),
-              );
+              if (state < 10) {
+                return const Center(
+                  child: Text(
+                    "under 10",
+                    style: TextStyle(fontSize: 50),
+                  ),
+                );
+              } else {
+                return Center(
+                  child: Text(
+                    '$state',
+                    style: const TextStyle(fontSize: 50),
+                  ),
+                );
+              }
             },
             buildWhen: (previous, current) {
-              if (current >= 10) {
+              if (current < 10) {
+                return true;
+              } else if (current >= 10) {
                 return true;
               } else {
                 return false;

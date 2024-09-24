@@ -8,12 +8,12 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Bloc Listener"),
+        title: const Text("Bloc Consumer"),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          BlocListener<Counter, int>(
+          BlocConsumer<Counter, int>(
             bloc: myCounter,
             listener: (context, state) {
               ScaffoldMessenger.of(context).showSnackBar(
@@ -30,17 +30,21 @@ class HomePage extends StatelessWidget {
                 return false;
               }
             },
-            child: BlocBuilder<Counter, int>(
-              bloc: myCounter,
-              builder: (context, state) {
-                return Center(
-                  child: Text(
-                    '$state',
-                    style: const TextStyle(fontSize: 50),
-                  ),
-                );
-              },
-            ),
+            builder: (context, state) {
+              return Center(
+                child: Text(
+                  '$state',
+                  style: const TextStyle(fontSize: 50),
+                ),
+              );
+            },
+            buildWhen: (previous, current) {
+              if (current >= 10) {
+                return true;
+              } else {
+                return false;
+              }
+            },
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,

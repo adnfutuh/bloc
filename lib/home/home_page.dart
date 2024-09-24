@@ -1,17 +1,15 @@
 import 'package:bloc_app/bloc/counter.dart';
-import 'package:bloc_app/pages/data_widget.dart';
+import 'package:bloc_app/home/merah.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-
   @override
   Widget build(BuildContext context) {
     Counter myCounter = BlocProvider.of<Counter>(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Bloc Provider"),
+        title: const Text("Dependency Injection"),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -20,7 +18,7 @@ class HomePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Material(
-                color: Colors.blue,
+                color: Colors.green,
                 borderRadius: BorderRadius.circular(25),
                 child: InkWell(
                   borderRadius: BorderRadius.circular(25),
@@ -30,18 +28,16 @@ class HomePage extends StatelessWidget {
                   child: const SizedBox(
                     height: 100,
                     width: 70,
-                    child: Center(
-                      child: Icon(
-                        Icons.remove,
-                        color: Colors.white,
-                      ),
+                    child: Icon(
+                      Icons.remove,
+                      color: Colors.white,
                     ),
                   ),
                 ),
               ),
-              const DataWidget(),
+              merah(),
               Material(
-                color: Colors.blue,
+                color: Colors.green,
                 borderRadius: BorderRadius.circular(25),
                 child: InkWell(
                   borderRadius: BorderRadius.circular(25),
@@ -51,11 +47,9 @@ class HomePage extends StatelessWidget {
                   child: const SizedBox(
                     height: 100,
                     width: 70,
-                    child: Center(
-                      child: Icon(
-                        Icons.add,
-                        color: Colors.white,
-                      ),
+                    child: Icon(
+                      Icons.add,
+                      color: Colors.white,
                     ),
                   ),
                 ),

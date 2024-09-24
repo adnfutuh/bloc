@@ -8,41 +8,40 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Bloc Builder"),
+        title: const Text("Bloc Listener"),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          BlocBuilder<Counter, int>(
+          BlocListener<Counter, int>(
             bloc: myCounter,
-            buildWhen: (previous, current) {
+            listener: (context, state) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  duration: Duration(seconds: 1),
+                  content: Text("Genap Bang"),
+                ),
+              );
+            },
+            listenWhen: (previous, current) {
               if (current % 2 == 0) {
                 return true;
               } else {
                 return false;
               }
             },
-            builder: (context, state) {
-              return Center(
-                child: Text(
-                  '$state',
-                  style: const TextStyle(fontSize: 50),
-                ),
-              );
-            },
+            child: BlocBuilder<Counter, int>(
+              bloc: myCounter,
+              builder: (context, state) {
+                return Center(
+                  child: Text(
+                    '$state',
+                    style: const TextStyle(fontSize: 50),
+                  ),
+                );
+              },
+            ),
           ),
-
-          // StreamBuilder(
-          //     initialData: myCounter.init,
-          //     stream: myCounter.stream,
-          //     builder: (context, snapshot) {
-          //       return Center(
-          //         child: Text(
-          //           '${snapshot.data}',
-          //           style: const TextStyle(fontSize: 50),
-          //         ),
-          //       );
-          //     }),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [

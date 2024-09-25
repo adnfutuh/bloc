@@ -20,47 +20,51 @@ class HomePage extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          BlocListener<ThemeBloc, bool>(
-            listener: (context, state) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text("Dark Mode"),
-                  duration: Duration(seconds: 1),
-                ),
-              );
-            },
-            listenWhen: (previous, current) {
-              if (current == false) {
-                return true;
-              } else {
-                return false;
-              }
-            },
-            child: BlocListener<CounterBloc, int>(
-              listener: (context, state) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text("di atas 10"),
-                    duration: Duration(seconds: 1),
-                  ),
-                );
-              },
-              listenWhen: (previous, current) {
-                if (current > 10) {
-                  return true;
-                } else {
-                  return false;
-                }
-              },
-              child: BlocBuilder<CounterBloc, int>(
-                bloc: myCounter,
-                builder: (context, state) {
-                  return Text(
-                    "$state",
-                    style: const TextStyle(fontSize: 50),
+          MultiBlocListener(
+            listeners: [
+              BlocListener<CounterBloc, int>(
+                listener: (context, state) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text("Di atas 10"),
+                      duration: Duration(seconds: 1),
+                    ),
                   );
                 },
+                listenWhen: (previous, current) {
+                  if (current > 10) {
+                    return true;
+                  } else {
+                    return false;
+                  }
+                },
               ),
+              BlocListener<ThemeBloc, bool>(
+                listener: (context, state) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text("Dark Mode"),
+                      duration: Duration(seconds: 1),
+                    ),
+                  );
+                },
+                listenWhen: (previous, current) {
+                  if (current == false) {
+                    return true;
+                  } else {
+                    return false;
+                  }
+                },
+              ),
+            ],
+            child: BlocBuilder<CounterBloc, int>(
+              bloc: myCounter,
+              builder: (context, state) {
+                return Text(
+                  "$state",
+                  style: const TextStyle(fontSize: 50),
+                );
+              },
             ),
           ),
           Row(

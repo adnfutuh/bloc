@@ -1,8 +1,8 @@
-import 'package:bloc_app/bloc/counter.dart';
-import 'package:bloc_app/bloc/theme.dart';
-import 'package:bloc_app/home/app.dart';
+import 'package:bloc_app/bloc/user_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'pages/home_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,13 +13,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(providers: [
-      BlocProvider(
-        create: (context) => CounterBloc(),
+    return BlocProvider(
+      create: (context) => UserBloc(),
+      child: const MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: HomePage(),
       ),
-      BlocProvider(
-        create: (context) => ThemeBloc(),
-      ),
-    ], child: const App());
+    );
   }
 }

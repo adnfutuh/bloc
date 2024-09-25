@@ -20,6 +20,6 @@ class MyApp extends StatelessWidget {
       BlocProvider(
         create: (context) => ThemeBloc(),
       ),
-    ], child: App());
+    ], child: const App());
   }
 }

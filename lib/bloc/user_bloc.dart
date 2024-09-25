@@ -1,19 +1,23 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class UserBloc extends Cubit<Map<String, dynamic>> {
-  UserBloc() : super({"name": "", "age": 0});
+  UserBloc()
+      : super({
+          "name": "",
+          "age": 0,
+        });
 
   void changeName(String newName) {
     emit({
       "name": newName,
-      "umur": state['age'],
+      "age": state['age'],
     });
   }
 
   void changeAge(int newAge) {
     emit({
       "name": state['name'],
-      "umur": newAge,
+      "age": newAge,
     });
   }
 }

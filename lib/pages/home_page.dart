@@ -15,16 +15,18 @@ class HomePage extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.all(20),
         children: [
-          BlocBuilder<UserBloc, Map<String, dynamic>>(
+          BlocSelector<UserBloc, Map<String, dynamic>, String>(
             bloc: userBloc,
+            selector: (state) => state['name'],
             builder: (context, state) {
-              return Text("Nama: ${state['name']}");
+              return Text("Nama: $state");
             },
           ),
-          BlocBuilder<UserBloc, Map<String, dynamic>>(
+          BlocSelector<UserBloc, Map<String, dynamic>, int>(
             bloc: userBloc,
+            selector: (state) => state["age"],
             builder: (context, state) {
-              return Text("Umur: ${state['age']}Tahun");
+              return Text("Umur: $state Tahun");
             },
           ),
           const SizedBox(height: 20),
@@ -39,13 +41,13 @@ class HomePage extends StatelessWidget {
             children: [
               IconButton(
                 onPressed: () {
-                  userBloc.changeAge(userBloc.state['age'] - 1);
+                  userBloc.changeAge(userBloc.state["age"] - 1);
                 },
                 icon: const Icon(Icons.remove),
               ),
               IconButton(
                 onPressed: () {
-                  userBloc.changeAge(userBloc.state['age'] + 1);
+                  userBloc.changeAge(userBloc.state["age"] + 1);
                 },
                 icon: const Icon(Icons.add),
               )

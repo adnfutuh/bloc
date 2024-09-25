@@ -12,7 +12,7 @@ class merah extends StatelessWidget {
       height: 200,
       width: 200,
       color: Colors.red,
-      child: kuning(),
+      child: const kuning(),
     );
   }
 }

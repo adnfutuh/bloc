@@ -1,28 +1,31 @@
 import 'package:bloc_app/bloc/counter.dart';
 import 'package:bloc_app/home/merah.dart';
-import 'package:bloc_app/other/other_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     //Counter myCounter = BlocProvider.of<Counter>(context);
     Counter myCounter = context.read();
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Dependency Injection"),
+        backgroundColor: Colors.blue,
+        title: const Text("Named Route Access"),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => const OtherPage()
-                //  BlocProvider(
-                //   create: (context) => myCounter,
-                //   child: const OtherPage(),
-                // ),
-                ),
-          );
+          Navigator.pushNamed(context, "/other");
+          // Navigator.of(context).push(
+          //   MaterialPageRoute(
+          //     builder: (context) => BlocProvider.value(
+          //       value: myCounter,
+          //       child: const OtherPage(),
+          //     ),
+          //   ),
+          // );
         },
         child: const Icon(Icons.arrow_forward),
       ),
@@ -50,7 +53,7 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
               ),
-              merah(),
+              const merah(),
               Material(
                 color: Colors.green,
                 borderRadius: BorderRadius.circular(25),

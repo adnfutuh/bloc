@@ -11,7 +11,7 @@ class kuning extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.all(15),
       color: Colors.amber,
-      child: biru(),
+      child: const biru(),
     );
   }
 }

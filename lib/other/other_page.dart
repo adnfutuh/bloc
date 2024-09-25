@@ -9,6 +9,10 @@ class OtherPage extends StatelessWidget {
   Widget build(BuildContext context) {
     Counter myCounter = context.read<Counter>();
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.blue,
+        title: const Text("other Page"),
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.of(context).pop();

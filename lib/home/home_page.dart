@@ -1,5 +1,6 @@
 import 'package:bloc_app/bloc/counter.dart';
 import 'package:bloc_app/home/merah.dart';
+import 'package:bloc_app/other/other_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -13,11 +14,13 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
-        title: const Text("Generated Route Access"),
+        title: const Text("Global Access"),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.pushNamed(context, "/other");
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => const OtherPage()));
+          // Navigator.pushNamed(context, "/other");
         },
         child: const Icon(Icons.arrow_forward),
       ),

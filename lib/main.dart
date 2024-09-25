@@ -13,8 +13,15 @@ class MyApp extends StatelessWidget {
   final ThemeBloc myTheme = ThemeBloc();
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => myTheme,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => CounterBloc(),
+        ),
+        BlocProvider(
+          create: (context) => myTheme,
+        ),
+      ],
       child: BlocBuilder<ThemeBloc, bool>(
         bloc: myTheme,
         builder: (context, state) {
@@ -29,5 +36,21 @@ class MyApp extends StatelessWidget {
         },
       ),
     );
+    // BlocProvider(
+    //   create: (context) => myTheme,
+    //   child: BlocBuilder<ThemeBloc, bool>(
+    //     bloc: myTheme,
+    //     builder: (context, state) {
+    //       return MaterialApp(
+    //         debugShowCheckedModeBanner: false,
+    //         theme: state == true ? ThemeData.light() : ThemeData.dark(),
+    //         home: BlocProvider(
+    //           create: (context) => CounterBloc(),
+    //           child: const HomePage(),
+    //         ),
+    //       );
+    //     },
+    //   ),
+    // );
   }
 }

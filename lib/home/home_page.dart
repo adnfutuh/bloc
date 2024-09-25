@@ -13,19 +13,11 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
-        title: const Text("Named Route Access"),
+        title: const Text("Generated Route Access"),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.pushNamed(context, "/other");
-          // Navigator.of(context).push(
-          //   MaterialPageRoute(
-          //     builder: (context) => BlocProvider.value(
-          //       value: myCounter,
-          //       child: const OtherPage(),
-          //     ),
-          //   ),
-          // );
         },
         child: const Icon(Icons.arrow_forward),
       ),

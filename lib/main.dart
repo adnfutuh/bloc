@@ -28,10 +28,7 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             theme: state == true ? ThemeData.light() : ThemeData.dark(),
-            home: BlocProvider(
-              create: (context) => CounterBloc(),
-              child: const HomePage(),
-            ),
+            home: HomePage(),
           );
         },
       ),
